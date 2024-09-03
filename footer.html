@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HER SHIELD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffccff, #ff6699);
+            position: relative;
+        }
+
+        /* Background graphic elements */
+        .background-graphics {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: moveCircle 15s linear infinite;
+            mix-blend-mode: overlay;
+        }
+
+        .circle:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 15%;
+        }
+
+        .circle:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 40%;
+            left: 70%;
+        }
+
+        .circle:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 30%;
+        }
+
+        @keyframes moveCircle {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+            100% { transform: translateY(0) scale(1); }
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff6699, #ffccff);
+            color: white;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid #ff6699;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+            position: relative;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: #ff6699;
+            bottom: -5px;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        nav ul li a:hover {
+            color: #ff3366;
+            transform: scale(1.1);
+        }
+
+        .animated-section {
+            background: url('https://www.transparenttextures.com/patterns/grey-paper.png'), linear-gradient(135deg, #ffffff, #f9f9f9);
+            padding: 60px;
+            margin: 20px auto;
+            border-radius: 15px;
+            max-width: 700px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            animation: slideInFromBottom 1.5s ease-out;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            animation: fadeInUp 2s ease-in-out;
+        }
+
+        form input, form textarea {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            font-size: 16px;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        form input:focus, form textarea:focus {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        form button {
+            padding: 15px 25px;
+            border: none;
+            background-color: #ff6699;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(255, 102, 153, 0.3);
+        }
+
+        form button:hover {
+            background-color: #ff3366;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 51, 102, 0.5);
+        }
+
+        footer {
+            background: url('https://www.transparenttextures.com/patterns/white-diamond.png'), linear-gradient(135deg, #ffffff, #f8f8f8);
+            padding: 30px;
+            margin-top: 20px;
+            border-top: 5px solid #ff6699;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .social-icons a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            font-size: 24px;
+            display: inline-block;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .social-icons a:hover {
+            color: #ff6699;
+            transform: scale(1.3);
+        }
+
+        @keyframes slideInFromBottom {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-graphics">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <header>
+        <h1>HER SHIELD</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="animated-section">
+        <h2>Get in Touch</h2>
+        <form>
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Your Email">
+            <textarea placeholder="Your Message"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#">instagram</a>
+            <a href="#">linkedin</a>
+            <a href="#">facebook</a>
+        </div>
+        <p>Contact Us | © 2024 HER SHIELD</p>
+    </footer>
+</body>
+</html>
