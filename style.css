@@ -324,3 +324,79 @@ form button:hover {
   background-color: white;
 }
 
+.slide img{
+  height: 500px;
+  width: 1000px;
+}
+
+.navbar a{
+  background-color: #ff0862;
+}
+.dropdown{
+  background-color: #ff0862;
+}
+
+.dropdown-btn{
+  background-color: #ff0862;
+}
+
+/* Optional: Ensure the cards are responsive on smaller screens */
+@media (max-width: 768px) {
+  .card-container {
+      flex-direction: column; /* Stack the cards vertically on smaller screens */
+      align-items: center; /* Center the cards */
+  }
+}
+
+.allcards{
+  margin-top: 300px;
+}
+
+.footer-container{
+  display: flex;
+  justify-content: space-evenly;
+  background-color:#dedae0 ;
+}
+
+.footer-copyright{
+  background-color:#dedae0 ;
+}
+
+.footer-section{
+  background-color:#dedae0 ;
+}
+
+.footer-section h3{
+  background-color:#dedae0 ;
+}
+
+.footer-section a{
+  background-color:#dedae0 ;
+}
+
+.footer-container p{
+  background-color:#dedae0 ;
+}
+
+.footer-container strong{
+  background-color: #dedae0;
+}
+
+.footer-container li{
+  background-color: #dedae0;
+}
+
+.footer-container ul{
+  background-color: #dedae0;
+}
+
+footer{
+  display: flex;
+  justify-content: space-evenly;
+  background-color:#dedae0 ;
+  line-height: 50px;
+}
+
+.footer-container p{
+  font-size: 15px;
+}
