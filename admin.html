@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+  <title>Send Notifications</title>
+  <style>
+    /* Full page background image */
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: url('/Firefly\ a\ software\ alarm\ system\ written\ alert\ with\ map\ integrated\ in\ it\ inside\ showing\ inside\ phone\ .jpg') no-repeat center center fixed; /* Replace with your image URL */
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Styling for form container */
+    .form-container {
+      background-color: rgba(14, 12, 12, 0.8); /* Semi-transparent background for form */
+      padding: 100px;
+      border-radius: 10px;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .title h1 {
+      color: #fcf8f8;
+      font-weight: bold;
+    }
+
+    /* Styling for the map */
+    #map {
+      height: 300px;
+      width: 100%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    b{
+      color: #fcf8f8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Form Container -->
+  <div class="form-container">
+    <div class="title text-center">
+      <h1><b>Send Alert</b></h1>
+    </div>
+
+    <form>
+      <div class="form-group">
+        <label for="location"><b>Location</b></label>
+        <input type="text" class="form-control" id="location" placeholder="Fetching live location..." readonly>
+      </div>
+
+      <!-- Map Container -->
+      <div id="map"></div>
+
+      <div class="form-group">
+        <label for="name"><b>Name</b></label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+      </div>
+      <button type="button" class="btn btn-primary" id="sendNotification">Submit</button>
+    </form>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    var socket = io("http://localhost:1572");
+
+    // Function to get live location
+    function getLiveLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+
+          // Populate the location input with live coordinates
+          document.getElementById('location').value = latitude + ', ' + longitude;
+
+          // Initialize the map at the live location
+          var map = L.map('map').setView([latitude, longitude], 13);
+
+          // Add OpenStreetMap tiles
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+          }).addTo(map);
+
+          // Add a marker at the live location
+          L.marker([latitude, longitude]).addTo(map)
+            .bindPopup('You are here!')
+            .openPopup();
+        }, function(error) {
+          alert('Error fetching location: ' + error.message);
+        });
+      } else {
+        alert('Geolocation is not supported by this browser.');
+      }
+    }
+
+    // Fetch live location on page load
+    window.onload = getLiveLocation;
+
+    document.getElementById('sendNotification').addEventListener('click', function() {
+      var location = document.getElementById('location').value;
+      var name = document.getElementById('name').value;
+
+      socket.emit('sendNotification', {
+        location: location,
+        name: name
+      });
+    });
+  </script>
+
+</body>
+</html>
